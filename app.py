@@ -61,10 +61,12 @@ def load_resources():
     
     # Charger les catégories
     conn = sqlite3.connect(os.path.join(BASE_DIR, "arxiv_relational.db"))
-    categories = pd.read_sql_query("SELECT DISTINCT categories FROM articles", conn)['categories'].dropna().unique()
+    categories_df = pd.read_sql_query("SELECT DISTINCT categories FROM articles", conn)
     conn.close()
     
-    return index, article_ids, model, nlp, authors, author_vectors, vectorizer, categories
+    all_categories = categories_df['categories'].dropna().unique()
+    
+    return index, article_ids, model, nlp, authors, author_vectors, vectorizer, all_categories
 
 index, article_ids, model, nlp, authors, author_vectors, vectorizer, all_categories = load_resources()
 
@@ -520,23 +522,31 @@ if search_button:
                 
                 if domain:
                     results_df = results_df[
-                        results_df['categories'].str.contains(domain)
+                        results_df['categories'].str.contains(domain, na=False)
                     ]
                 
                 if entities['authors']:
                     results_df = results_df[
-                        results_df['authors'].str.contains(entities['authors'][0], case=False)
+                        results_df['authors'].str.contains(entities['authors'][0], case=False, na=False)
                     ]
                 
                 # Ajouter les scores de pertinence
                 if not results_df.empty:
-                    # Conserver l'ordre original des résultats
-                    results_df = results_df.set_index('article_id')
-                    results_df = results_df.loc[result_ids]
-                    results_df = results_df.reset_index()
+                    # Créer un DataFrame de scores
+                    scores_df = pd.DataFrame({
+                        'article_id': result_ids,
+                        'similarity_score': scores
+                    })
                     
-                    # Ajouter les scores
-                    results_df['similarity_score'] = scores[:len(results_df)]
+                    # Fusionner avec les résultats
+                    results_df = pd.merge(
+                        results_df, 
+                        scores_df, 
+                        on='article_id', 
+                        how='inner'
+                    )
+                    
+                    # Trier par score
                     results_df = results_df.sort_values('similarity_score', ascending=False)
                     
                     # Générer et afficher la réponse
