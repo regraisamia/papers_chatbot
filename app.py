@@ -506,8 +506,8 @@ def generate_intelligent_response(analysis, results):
     return response, visualizations
 
 # User interface
-st.title("💬 Arxiv Research Assistant")
-st.caption("AI-powered research companion - Understands natural language queries")
+st.title("💬 Papers Research Assistant")
+st.caption("Research scientifique papers companion")
 
 # Initialize conversation history
 if "chat_history" not in st.session_state:
@@ -651,8 +651,6 @@ if prompt := st.chat_input("Ask about scientific research..."):
         # Reload interface
         st.rerun()
 
-# Examples section
-st.divider()
 
 
 # Footer
