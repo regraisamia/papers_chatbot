@@ -1,23 +1,21 @@
+# 📚 Papers Research Assistant
 
-# 📚 Papers Research Assistant  
-![Papers Research Assistant]
-
-**Papers Research Assistant** est une application intelligente qui vous permet d'explorer et d'analyser les dernières publications scientifiques en informatique.  
-Basée sur les archives **arXiv**, elle utilise l’intelligence artificielle pour comprendre vos requêtes et fournir des réponses contextuelles enrichies de visualisations interactives.
+**Papers Research Assistant** is an intelligent application designed to explore and analyze the latest scientific publications in computer science. 
+Built on top of the **arXiv** archives, it leverages Artificial Intelligence to understand natural language queries and provide contextual answers enriched with interactive visualizations.
 
 ---
 
-##  Fonctionnalités clés
+## ✨ Key Features
 
--  **Recherche sémantique** — Trouvez des articles pertinents en posant des questions en langage naturel  
--  **Analyse de tendances** — Suivez l’évolution des publications par domaine ou par période  
--  **Réseaux de collaboration** — Identifiez les auteurs qui travaillent ensemble  
--  **Visualisations interactives** — Explorez les résultats à l’aide de graphiques dynamiques  
--  **Réponses instantanées** — Obtenez des résultats riches en moins d’une seconde
+- **Semantic Search:** Find highly relevant papers by asking questions in natural language.
+- **Trend Analysis:** Track the evolution of publications by specific domains or time periods.
+- **Collaboration Networks:** Identify authors who frequently co-author and work together.
+- **Interactive Visualizations:** Explore query results through dynamic, interactive graphs.
+- **Instant Answers:** Retrieve rich, contextualized results in under a second.
 
 ---
 
-##  Technologies utilisées
+## 💻 Technologies Used
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.31.1-FF4B4B)
@@ -28,59 +26,56 @@ Basée sur les archives **arXiv**, elle utilise l’intelligence artificielle po
 
 ---
 
-##  Installation
+## 🚀 Installation
 
-### 1. Cloner le dépôt
-
+### 1. Clone the repository
 ```bash
-git clone https://github.com/votre-utilisateur/papers-research-assistant.git
+git clone https://github.com/your-username/papers-research-assistant.git
 cd papers-research-assistant
 ```
 
-### 2. Créer un environnement virtuel
-
+### 2. Create a virtual environment
 ```bash
+# For Linux/Mac
 python -m venv venv
-source venv/bin/activate     # Pour Linux/Mac
-venv\Scripts\activate        # Pour Windows
+source venv/bin/activate  
+
+# For Windows
+venv\Scripts\activate
 ```
 
-### 3. Installer les dépendances
-
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-##  Configuration des données
+## 🗄️ Data Configuration
 
-### 1. Télécharger les métadonnées arXiv
+### 1. Download arXiv Metadata
 
-- Récupérez le fichier `arxiv-metadata-oai-snapshot.json` depuis [Kaggle](https://www.kaggle.com/datasets)
-- Placez-le dans le dossier `arxiv/data/` du projet
+- Download the `arxiv-metadata-oai-snapshot.json` file from [Kaggle](https://www.kaggle.com/datasets/Cornell-University/arxiv)
+- Place it inside the `arxiv/data/` directory of the project
 
-### 2. Préparer les fichiers nettoyés
-
+### 2. Prepare and Clean Data
 ```bash
 jupyter notebook data-prep.ipynb
 ```
 
-### 3. Créer la base relationnelle SQLite
-
+### 3. Create the SQLite Relational Database
 ```bash
 jupyter notebook stockage.ipynb
 ```
 
-### 4. Générer l’index vectoriel FAISS
-
+### 4. Generate the FAISS Vector Index
 ```bash
 jupyter notebook indexation.ipynb
 ```
 
 ---
 
-## 🚀 Lancer l'application
+## 🏃♂️ Running the Application
 
 ```bash
 streamlit run app.py
@@ -88,62 +83,66 @@ streamlit run app.py
 
 ---
 
-## 💬 Exemples de requêtes
+## 💬 Example Queries
 
-- `recent articles about computer vision`
-- `articles about NLP in medical fields`
-- `AI trends from 2020 to 2024`
-- `collaborators with Jennifer Doherty`
-- `top authors in deep learning`
-- `how many papers were published in quantum computing in 2023`
+- recent articles about computer vision
+- articles about NLP in medical fields
+- AI trends from 2020 to 2024
+- collaborators with Jennifer Doherty
+- top authors in deep learning
+- how many papers were published in quantum computing in 2023
 
 ---
 
-## 🛠️ Personnalisation
+## 🛠️ Customization
 
-Dans `app.py`, vous pouvez modifier :
+Inside `app.py`, you can modify the following parameters:
 
-### 📅 Période de publication par défaut :
-
+### 📅 Default Publication Period:
 ```python
-selected_years = st.slider("Période de publication", 2020, 2025, (2020, 2024))
+selected_years = st.slider("Publication Period", 2020, 2025, (2020, 2024))
 ```
 
-### 🤖 Modèle d’embedding sémantique :
-
+### 🤖 Semantic Embedding Model:
 ```python
 model = SentenceTransformer("all-mpnet-base-v2")
 ```
 
-Vous pouvez aussi tester d'autres modèles comme `all-MiniLM-L6-v2` pour un traitement plus rapide.
+**Note:** You can test other models like `all-MiniLM-L6-v2` for faster processing times.
 
 ---
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! Pour participer :
+Contributions are welcome! To contribute:
 
-1. Forkez ce dépôt
-2. Créez une nouvelle branche :
-   ```bash
-   git checkout -b feature/ma-fonction
-   ```
-3. Faites vos modifications et commit :
-   ```bash
-   git commit -m "Ajout de la fonctionnalité X"
-   ```
-4. Pushez vos modifications :
-   ```bash
-   git push origin feature/ma-fonction
-   ```
-5. Créez une Pull Request 📩
+1. Fork this repository.
+
+2. Create a new branch:
+```bash
+git checkout -b feature/my-feature
+```
+
+3. Commit your changes:
+```bash
+git commit -m "Add feature X"
+```
+
+4. Push to the branch:
+```bash
+git push origin feature/my-feature
+```
+
+5. Open a Pull Request 📩
 
 ---
 
-## 📢 À propos
+## 🎓 About
 
-Projet réalisé dans le cadre du Master Business Intelligence et Big Data Analytiques (BIBDA).  
-Un assistant scientifique intelligent pour l’analyse automatisée des publications arXiv.
+This project was developed as part of the **Master's in Business Intelligence and Big Data Analytics (BIBDA)** program.
+It serves as an intelligent scientific assistant for the automated analysis of arXiv publications.
 
-**Papers Research Assistant © 2025**  
-Développé par : [Samia Regragui](https://github.com/regraisamia) & [Nouhaila Ennaouaoui](#)
+---
+
+**Papers Research Assistant** © 2025  
+Developed by: **Samia Regrai** & **Nouhaila Ennaouaoui**
